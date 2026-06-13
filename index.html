@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MileStone Tiimes | Custom Cakes and Dessert Treats in Ottawa</title>
+    <meta
+      name="description"
+      content="Luxury custom cakes and dessert treats made with love for milestone celebrations and events in Ottawa."
+    >
+    <meta property="og:title" content="MileStone Tiimes">
+    <meta
+      property="og:description"
+      content="Custom cakes, cupcakes, cake pops, rum balls, treat tables, and wedding cakes for Ottawa milestone moments."
+    >
+    <meta property="og:image" content="assets/images/custom-cake-promo.jpg">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="#top" aria-label="MileStone Tiimes home">
+        <span class="brand-mark">MT</span>
+        <span>
+          <strong>MileStone Tiimes</strong>
+          <small>Cake & Dessert Treats</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Open menu</span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="#shop">Shop</a>
+        <a href="#custom">Custom</a>
+        <a href="#events">Events</a>
+        <a href="#checkout">Checkout</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="cart-button" type="button" data-open-cart>
+        <span>Order</span>
+        <strong data-cart-count>0</strong>
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-media" aria-hidden="true">
+          <img src="assets/images/custom-cake-promo.jpg" alt="">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-inner">
+          <p class="eyebrow">Ottawa custom cakes and dessert treats</p>
+          <h1 id="hero-title">MileStone Tiimes</h1>
+          <p class="hero-copy">
+            Luxury custom cakes and dessert treats made with love for the milestone
+            moments you never want to forget.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button button-primary" href="#shop">Start an order</a>
+            <a class="button button-soft" href="#custom">Plan a custom event</a>
+          </div>
+          <dl class="hero-facts" aria-label="Ordering facts">
+            <div>
+              <dt>Pickup</dt>
+              <dd>Gloucester area</dd>
+            </div>
+            <div>
+              <dt>Notice</dt>
+              <dd>48 hrs to 2 weeks</dd>
+            </div>
+            <div>
+              <dt>Payment</dt>
+              <dd>E-transfer deposit</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="order-strip" aria-label="Fast ordering options">
+        <a href="#shop">
+          <strong>Quick treats</strong>
+          <span>Cupcakes, cake pops, rum balls, boxes</span>
+        </a>
+        <a href="#custom">
+          <strong>Custom cakes</strong>
+          <span>Birthdays, themes, premium finishes</span>
+        </a>
+        <a href="#events">
+          <strong>Event tables</strong>
+          <span>Weddings, showers, milestone parties</span>
+        </a>
+      </section>
+
+      <section class="section intro-band" aria-labelledby="intro-title">
+        <div class="section-kicker">Made for your moment</div>
+        <div class="intro-grid">
+          <div>
+            <h2 id="intro-title">Desserts that make the celebration feel personal.</h2>
+          </div>
+          <div class="intro-copy">
+            <p>
+              MileStone Tiimes brings a balanced mix of elegant, warm, and sparkly
+              design to Ottawa celebrations. The first online experience is built
+              around what customers already ask for: simple birthday cakes, cupcakes,
+              cake pops, rum balls, standard treat boxes, wedding cakes, and treat tables.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section shop-section" id="shop" aria-labelledby="shop-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Orderable favorites</p>
+            <h2 id="shop-title">Start with something sweet.</h2>
+          </div>
+          <div class="filter-controls" aria-label="Filter products">
+            <button class="filter-button is-active" type="button" data-filter="all">All</button>
+            <button class="filter-button" type="button" data-filter="treats">Treats</button>
+            <button class="filter-button" type="button" data-filter="cakes">Cakes</button>
+            <button class="filter-button" type="button" data-filter="events">Events</button>
+          </div>
+        </div>
+
+        <div class="product-grid" data-products>
+          <article class="product-card" data-category="cakes">
+            <img src="assets/images/custom-cake-promo.jpg" alt="Pink and gold custom celebration cake">
+            <div class="product-body">
+              <p class="product-type">Request pricing</p>
+              <h3>Simple Birthday Cakes</h3>
+              <p>Elegant birthday cakes for milestone dinners, family parties, and classic celebration moments.</p>
+              <ul>
+                <li>5 day notice</li>
+                <li>Pickup or delivery</li>
+                <li>Deposit by e-transfer</li>
+              </ul>
+              <button class="button button-dark" type="button" data-quote="Simple Birthday Cake">Request cake</button>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="treats">
+            <img src="assets/images/cupcake-luxury.jpg" alt="Pink custom cupcakes in a gift box">
+            <div class="product-body">
+              <p class="product-type">48 hour notice</p>
+              <h3>Custom Cupcakes</h3>
+              <p>Swirled, detailed, made-to-impress cupcakes for every celebration table.</p>
+              <ul>
+                <li>By the dozen</li>
+                <li>Color and theme notes</li>
+                <li>Great for gifting</li>
+              </ul>
+              <button class="button button-dark" type="button" data-add-product="Custom Cupcakes">Add to order</button>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="treats">
+            <img src="assets/images/bling-treats.jpg" alt="Gold and turquoise custom cake pop with sparkle detail">
+            <div class="product-body">
+              <p class="product-type">48 hour notice</p>
+              <h3>Cake Pops</h3>
+              <p>Bite-sized custom treats finished with the bling, color, and personality of the event.</p>
+              <ul>
+                <li>Custom colors</li>
+                <li>Event favors</li>
+                <li>Boxed or table-ready</li>
+              </ul>
+              <button class="button button-dark" type="button" data-add-product="Cake Pops">Add to order</button>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="treats">
+            <img src="assets/images/treats-square-a.jpg" alt="MileStone Tiimes custom dessert detail">
+            <div class="product-body">
+              <p class="product-type">48 hour notice</p>
+              <h3>Rum Balls</h3>
+              <p>A rich, classic treat for dessert boxes, adult gatherings, and holiday-style gifting.</p>
+              <ul>
+                <li>Small batch</li>
+                <li>Box options</li>
+                <li>Pickup or delivery</li>
+              </ul>
+              <button class="button button-dark" type="button" data-add-product="Rum Balls">Add to order</button>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="treats">
+            <img src="assets/images/bling-square.jpg" alt="Sparkly MileStone Tiimes custom dessert box graphic">
+            <div class="product-body">
+              <p class="product-type">Request pricing</p>
+              <h3>Standard Treat Boxes</h3>
+              <p>Curated dessert boxes for birthdays, thank-you gifts, office moments, and surprise deliveries.</p>
+              <ul>
+                <li>Mixed treats</li>
+                <li>Gift-ready finish</li>
+                <li>Theme notes welcome</li>
+              </ul>
+              <button class="button button-dark" type="button" data-add-product="Standard Treat Box">Add to order</button>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="events">
+            <img src="assets/images/cake-square.jpg" alt="Custom cake design for a premium celebration">
+            <div class="product-body">
+              <p class="product-type">1 to 2 week notice</p>
+              <h3>Wedding Cakes</h3>
+              <p>Beautifully made, uniquely yours cakes for intimate weddings and signature reception moments.</p>
+              <ul>
+                <li>Quote required</li>
+                <li>Consultation notes</li>
+                <li>Deposit to confirm</li>
+              </ul>
+              <button class="button button-dark" type="button" data-quote="Wedding Cake">Start wedding request</button>
+            </div>
+          </article>
+
+          <article class="product-card product-card-wide" data-category="events">
+            <img src="assets/images/celebration-detail.jpg" alt="MileStone Tiimes custom dessert celebration detail">
+            <div class="product-body">
+              <p class="product-type">1 to 2 week notice</p>
+              <h3>Treat Tables</h3>
+              <p>Coordinated dessert tables for showers, birthdays, weddings, launches, and milestone events.</p>
+              <ul>
+                <li>Quote required</li>
+                <li>Theme and guest count</li>
+                <li>Pickup or delivery planning</li>
+              </ul>
+              <button class="button button-dark" type="button" data-quote="Treat Table">Plan a treat table</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section custom-section" id="custom" aria-labelledby="custom-title">
+        <div class="split-layout">
+          <div class="custom-copy">
+            <p class="section-kicker">Custom order studio</p>
+            <h2 id="custom-title">Tell us the milestone. We will shape the dessert around it.</h2>
+            <p>
+              Custom cakes, wedding cakes, and treat tables are quote-based so every
+              detail can be matched to the event: palette, theme, guest count, finish,
+              delivery needs, and the kind of reveal the host wants.
+            </p>
+            <div class="notice-grid" aria-label="Minimum notice">
+              <div>
+                <strong>48 hours</strong>
+                <span>Cupcakes, cake pops, rum balls</span>
+              </div>
+              <div>
+                <strong>5 days</strong>
+                <span>Simple birthday cakes</span>
+              </div>
+              <div>
+                <strong>7 days</strong>
+                <span>Custom cakes</span>
+              </div>
+              <div>
+                <strong>1 to 2 weeks</strong>
+                <span>Wedding cakes and treat tables</span>
+              </div>
+            </div>
+          </div>
+
+          <form class="quote-form" id="quote-form">
+            <h3>Request a custom quote</h3>
+            <label>
+              Celebration type
+              <select name="eventType" id="event-type" required>
+                <option value="">Choose one</option>
+                <option>Simple Birthday Cake</option>
+                <option>Custom Cake</option>
+                <option>Wedding Cake</option>
+                <option>Treat Table</option>
+                <option>Standard Treat Box</option>
+              </select>
+            </label>
+            <label>
+              Event date
+              <input type="date" name="eventDate" required>
+            </label>
+            <label>
+              Guest count or servings
+              <input type="text" name="servings" placeholder="Example: 24 guests">
+            </label>
+            <label>
+              Theme, colors, and details
+              <textarea name="details" rows="5" placeholder="Tell us the colors, occasion, inspiration, and delivery needs."></textarea>
+            </label>
+            <button class="button button-primary" type="submit">Send quote request</button>
+            <p class="form-note" data-quote-status aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section events-section" id="events" aria-labelledby="events-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Celebration paths</p>
+            <h2 id="events-title">Built for milestone planners.</h2>
+          </div>
+          <a class="text-link" href="https://www.facebook.com/people/MileStone-Tiimes/100064224105993/" target="_blank" rel="noreferrer">
+            Message on Facebook
+          </a>
+        </div>
+
+        <div class="occasion-grid">
+          <article>
+            <span>01</span>
+            <h3>Birthday moments</h3>
+            <p>Simple cakes, themed cupcakes, cake pops, and boxes for the celebration everyone remembers.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Wedding and shower tables</h3>
+            <p>Elegant dessert moments coordinated by palette, guest count, and the flow of the event.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Giftable treats</h3>
+            <p>Boxes and small-batch sweets for thank-you gestures, surprise deliveries, and personal wins.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="visual-band" aria-label="MileStone Tiimes gallery">
+        <img src="assets/images/bling-treats.jpg" alt="Sparkly cake pop by MileStone Tiimes">
+        <img src="assets/images/cupcake-luxury.jpg" alt="Custom cupcakes by MileStone Tiimes">
+        <img src="assets/images/custom-cake-promo.jpg" alt="Custom cake by MileStone Tiimes">
+      </section>
+
+      <section class="section process-section" aria-labelledby="process-title">
+        <p class="section-kicker">How orders work</p>
+        <h2 id="process-title">Clear enough for quick treats. Personal enough for custom work.</h2>
+        <div class="process-grid">
+          <article>
+            <span>1</span>
+            <h3>Choose or request</h3>
+            <p>Add quick treats to the order list or start a quote for cakes, weddings, and event tables.</p>
+          </article>
+          <article>
+            <span>2</span>
+            <h3>Confirm the details</h3>
+            <p>MileStone Tiimes confirms date, design, pickup or delivery, and the deposit amount.</p>
+          </article>
+          <article>
+            <span>3</span>
+            <h3>Send deposit</h3>
+            <p>Deposit is paid by e-transfer. The remaining balance is paid in cash at pickup or delivery.</p>
+          </article>
+          <article>
+            <span>4</span>
+            <h3>Celebrate beautifully</h3>
+            <p>Pickup in the Gloucester area or arrange local Ottawa delivery for the finished order.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section checkout-section" id="checkout" aria-labelledby="checkout-title">
+        <div class="checkout-grid">
+          <div>
+            <p class="section-kicker">Ottawa checkout</p>
+            <h2 id="checkout-title">Build the order, then confirm the deposit.</h2>
+            <p>
+              This first checkout flow is designed for how MileStone Tiimes currently
+              works: customer details, event timing, pickup or delivery, e-transfer
+              deposit, and cash remainder at pickup or delivery.
+            </p>
+            <button class="button button-primary" type="button" data-open-cart>Open order</button>
+          </div>
+
+          <form class="checkout-form" id="checkout-form">
+            <h3>Order details</h3>
+            <label>
+              Name
+              <input type="text" name="name" autocomplete="name" required>
+            </label>
+            <label>
+              Email or phone
+              <input type="text" name="contact" autocomplete="email" required>
+            </label>
+            <label>
+              Needed by
+              <input type="date" name="neededBy" required>
+            </label>
+            <label>
+              Fulfillment
+              <select name="fulfillment" required>
+                <option value="">Choose one</option>
+                <option>Gloucester-area pickup</option>
+                <option>Ottawa local delivery</option>
+              </select>
+            </label>
+            <label>
+              Notes
+              <textarea name="notes" rows="4" placeholder="Add colors, occasion, delivery area, or timing notes."></textarea>
+            </label>
+            <button class="button button-dark" type="submit">Send order details</button>
+            <p class="form-note" data-checkout-status aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section founder-section" aria-labelledby="founder-title">
+        <div class="founder-image">
+          <img src="assets/images/hero-cake.jpg" alt="MileStone Tiimes founder and event planning feature">
+        </div>
+        <div>
+          <p class="section-kicker">From parties to sweet tables</p>
+          <h2 id="founder-title">A celebration brand with event instincts.</h2>
+          <p>
+            MileStone Tiimes grew from creative event planning into custom dessert
+            treats and cakes for special orders. That matters online: the site is
+            designed to sell more than a product. It sells confidence that the dessert
+            will fit the moment.
+          </p>
+          <a class="button button-soft-outline" href="#custom">Start a milestone request</a>
+        </div>
+      </section>
+
+      <section class="section faq-section" aria-labelledby="faq-title">
+        <div>
+          <p class="section-kicker">Good to know</p>
+          <h2 id="faq-title">Before you order.</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>Where is pickup?</summary>
+            <p>Pickup is in the Gloucester area of Ottawa. The exact address is confirmed after the order is accepted.</p>
+          </details>
+          <details>
+            <summary>Do you deliver?</summary>
+            <p>Local Ottawa delivery is available. Delivery details and timing are confirmed before the deposit is finalized.</p>
+          </details>
+          <details>
+            <summary>How do deposits work?</summary>
+            <p>Deposits are paid by e-transfer. The remaining balance is paid in cash at pickup or cash on delivery.</p>
+          </details>
+          <details>
+            <summary>What about allergens?</summary>
+            <p>Items may be prepared in a kitchen that handles common allergens. Share allergy concerns before ordering so the request can be reviewed.</p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <aside class="cart-drawer" aria-labelledby="cart-title" aria-hidden="true" data-cart-drawer>
+      <div class="cart-panel">
+        <div class="cart-header">
+          <div>
+            <p class="section-kicker">Order list</p>
+            <h2 id="cart-title">Your sweet start</h2>
+          </div>
+          <button class="close-button" type="button" data-close-cart aria-label="Close order">x</button>
+        </div>
+        <div class="cart-items" data-cart-items>
+          <p class="empty-cart">Add cupcakes, cake pops, rum balls, or a standard box to begin.</p>
+        </div>
+        <div class="cart-summary">
+          <p>Pricing is confirmed after MileStone Tiimes reviews the request.</p>
+          <a class="button button-primary" href="#checkout" data-close-cart>Continue to details</a>
+        </div>
+      </div>
+    </aside>
+
+    <footer class="site-footer" id="contact">
+      <div>
+        <a class="brand footer-brand" href="#top" aria-label="MileStone Tiimes home">
+          <span class="brand-mark">MT</span>
+          <span>
+            <strong>MileStone Tiimes</strong>
+            <small>Cake & Dessert Treats</small>
+          </span>
+        </a>
+        <p>Ottawa custom cakes, cupcakes, cake pops, rum balls, wedding cakes, and treat tables.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#shop">Shop treats</a>
+        <a href="#custom">Request quote</a>
+        <a href="https://www.facebook.com/people/MileStone-Tiimes/100064224105993/" target="_blank" rel="noreferrer">Facebook</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
