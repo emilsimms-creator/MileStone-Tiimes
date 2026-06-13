@@ -10,6 +10,9 @@ First static ecommerce presence for MileStone Tiimes, built for GitHub Pages.
 - Quote request flow for custom cakes, wedding cakes, and treat tables.
 - Checkout details flow aligned to the current payment model: e-transfer deposit and cash remainder at pickup or delivery.
 - Email and SMS handoff links that prepare order details for juliavalcin@gmail.com and a text notification to +1 819-329-2391.
+- Occasion-led shopping paths for birthdays, weddings, event tables, and gift boxes.
+- Order handoff fallback panels with copyable details for email, text, or Messenger.
+- Minimum date and notice guidance for quick treats and custom milestone orders.
 - Local public assets captured from the MileStone Tiimes Facebook page for the first version.
 
 ## GitHub Pages publishing

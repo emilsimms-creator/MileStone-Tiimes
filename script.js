@@ -8,8 +8,17 @@ const checkoutForm = document.querySelector("#checkout-form");
 const quoteStatus = document.querySelector("[data-quote-status]");
 const checkoutStatus = document.querySelector("[data-checkout-status]");
 const eventType = document.querySelector("#event-type");
+const quoteDateInput = quoteForm.querySelector('input[name="eventDate"]');
+const checkoutDateInput = checkoutForm.querySelector('input[name="neededBy"]');
 const ownerEmail = "juliavalcin@gmail.com";
 const ownerSms = "+18193292391";
+const minNoticeDays = {
+  "Simple Birthday Cake": 5,
+  "Custom Cake": 7,
+  "Wedding Cake": 14,
+  "Treat Table": 14,
+  "Standard Treat Box": 2
+};
 
 const productMeta = {
   "Custom Cupcakes": { notice: "48 hour notice", category: "Treats" },
@@ -67,9 +76,90 @@ function showNotificationLinks(statusElement, links, message) {
   `;
 }
 
-function openNotificationApps(links) {
-  window.open(links.sms, "_blank", "noopener,noreferrer");
+function openNotificationApps(links, shouldOpenSms = false) {
+  if (shouldOpenSms) {
+    window.open(links.sms, "_blank", "noopener,noreferrer");
+  }
   window.location.href = links.email;
+}
+
+function todayAtMidnight() {
+  const date = new Date();
+  date.setHours(0, 0, 0, 0);
+  return date;
+}
+
+function addDays(date, days) {
+  const next = new Date(date);
+  next.setDate(next.getDate() + days);
+  return next;
+}
+
+function formatDateInput(date) {
+  return date.toISOString().slice(0, 10);
+}
+
+function daysUntil(dateValue) {
+  const selected = new Date(`${dateValue}T00:00:00`);
+  const diff = selected.getTime() - todayAtMidnight().getTime();
+  return Math.ceil(diff / 86400000);
+}
+
+function setMinimumDates() {
+  const twoDaysFromNow = formatDateInput(addDays(todayAtMidnight(), 2));
+  quoteDateInput.min = twoDaysFromNow;
+  checkoutDateInput.min = twoDaysFromNow;
+}
+
+function updateQuoteMinimumDate() {
+  const type = eventType.value;
+  const requiredDays = minNoticeDays[type] || 2;
+  const minimum = formatDateInput(addDays(todayAtMidnight(), requiredDays));
+
+  quoteDateInput.min = minimum;
+  if (quoteDateInput.value && quoteDateInput.value < minimum) {
+    quoteDateInput.value = minimum;
+  }
+
+  if (type) {
+    quoteStatus.textContent = `${type} usually needs ${requiredDays} days of notice.`;
+  }
+}
+
+function noticeMessage(type, dateValue) {
+  const requiredDays = minNoticeDays[type] || 2;
+  const availableDays = daysUntil(dateValue);
+  if (Number.isNaN(availableDays)) return "";
+  if (availableDays < requiredDays) {
+    return `Heads up: ${type} usually needs ${requiredDays} days of notice. Julia can review this as a rush request, but availability is not guaranteed.`;
+  }
+  return `${type} timing looks workable based on the usual ${requiredDays} day notice.`;
+}
+
+function populateHandoff(panelSelector, emailSelector, smsSelector, summarySelector, copySelector, links, summary) {
+  const panel = document.querySelector(panelSelector);
+  const emailLink = document.querySelector(emailSelector);
+  const smsLink = document.querySelector(smsSelector);
+  const summaryField = document.querySelector(summarySelector);
+  const copyButton = document.querySelector(copySelector);
+
+  panel.classList.remove("is-hidden");
+  emailLink.href = links.email;
+  smsLink.href = links.sms;
+  summaryField.value = summary;
+  copyButton.dataset.copyText = summary;
+}
+
+async function copySummary(button, statusElement) {
+  const text = button.dataset.copyText || "";
+  if (!text) return;
+
+  try {
+    await navigator.clipboard.writeText(text);
+    statusElement.textContent = "Details copied. You can paste them into email, text, or Messenger.";
+  } catch (error) {
+    statusElement.textContent = "Copy did not work in this browser. Select the details box and copy manually.";
+  }
 }
 
 function renderCart() {
@@ -167,10 +257,13 @@ document.querySelectorAll("[data-add-product]").forEach((button) => {
 document.querySelectorAll("[data-quote]").forEach((button) => {
   button.addEventListener("click", () => {
     eventType.value = button.dataset.quote;
+    updateQuoteMinimumDate();
     document.querySelector("#custom").scrollIntoView({ behavior: "smooth", block: "start" });
     eventType.focus({ preventScroll: true });
   });
 });
+
+eventType.addEventListener("change", updateQuoteMinimumDate);
 
 document.querySelectorAll("[data-filter]").forEach((button) => {
   button.addEventListener("click", () => {
@@ -192,6 +285,7 @@ quoteForm.addEventListener("submit", (event) => {
   const date = data.get("eventDate");
   const servings = data.get("servings") || "Not provided";
   const details = data.get("details") || "No extra details provided.";
+  const timingNote = noticeMessage(type, date);
   const subject = `MileStone Tiimes quote request: ${type}`;
   const emailBody = [
     "New MileStone Tiimes quote request",
@@ -202,6 +296,8 @@ quoteForm.addEventListener("submit", (event) => {
     "",
     "Theme, colors, and details:",
     details,
+    "",
+    `Timing note: ${timingNote}`,
     "",
     "Payment model: e-transfer deposit; cash remainder on pickup or delivery.",
     "Pickup/delivery: Gloucester-area pickup or Ottawa local delivery.",
@@ -215,9 +311,18 @@ quoteForm.addEventListener("submit", (event) => {
   showNotificationLinks(
     quoteStatus,
     links,
-    "Quote request prepared. Your device should open email and SMS; use these links if it does not."
+    `${timingNote} Quote request prepared. Use the links or copy the details below.`
   );
-  openNotificationApps(links);
+  populateHandoff(
+    "[data-quote-handoff]",
+    "[data-quote-email]",
+    "[data-quote-sms]",
+    "[data-quote-summary]",
+    "[data-copy-quote]",
+    links,
+    emailBody
+  );
+  openNotificationApps(links, false);
 });
 
 checkoutForm.addEventListener("submit", (event) => {
@@ -237,6 +342,7 @@ checkoutForm.addEventListener("submit", (event) => {
   }
 
   const subject = `MileStone Tiimes order: ${name} for ${neededBy}`;
+  const timingNote = noticeMessage("Standard Treat Box", neededBy);
   const emailBody = [
     "New MileStone Tiimes order details",
     "",
@@ -251,6 +357,8 @@ checkoutForm.addEventListener("submit", (event) => {
     "Customer notes:",
     notes,
     "",
+    `Timing note: ${timingNote}`,
+    "",
     "Payment model: e-transfer deposit; cash remainder on pickup or delivery.",
     "Pickup/delivery: Gloucester-area pickup or Ottawa local delivery.",
     "",
@@ -263,9 +371,27 @@ checkoutForm.addEventListener("submit", (event) => {
   showNotificationLinks(
     checkoutStatus,
     links,
-    "Order details prepared. Your device should open email and SMS; use these links if it does not."
+    `${timingNote} Order details prepared. Use the links or copy the details below.`
   );
-  openNotificationApps(links);
+  populateHandoff(
+    "[data-checkout-handoff]",
+    "[data-checkout-email]",
+    "[data-checkout-sms]",
+    "[data-checkout-summary]",
+    "[data-copy-checkout]",
+    links,
+    emailBody
+  );
+  openNotificationApps(links, false);
 });
 
+document.querySelector("[data-copy-quote]").addEventListener("click", (event) => {
+  copySummary(event.currentTarget, quoteStatus);
+});
+
+document.querySelector("[data-copy-checkout]").addEventListener("click", (event) => {
+  copySummary(event.currentTarget, checkoutStatus);
+});
+
+setMinimumDates();
 renderCart();
