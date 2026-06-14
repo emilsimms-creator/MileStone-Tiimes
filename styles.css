@@ -32,6 +32,10 @@ body {
   line-height: 1.5;
 }
 
+body.has-confirmation {
+  overflow: hidden;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -1015,6 +1019,99 @@ details p {
   color: var(--muted);
 }
 
+.confirmation-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  padding: 24px;
+  place-items: center;
+  background: rgba(33, 25, 24, 0.58);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 180ms ease, visibility 180ms ease;
+}
+
+.confirmation-screen:not(.is-hidden) {
+  opacity: 1;
+  visibility: visible;
+}
+
+.confirmation-panel {
+  position: relative;
+  display: grid;
+  width: min(720px, 100%);
+  max-height: min(860px, calc(100vh - 48px));
+  gap: 18px;
+  padding: 34px;
+  overflow: auto;
+  background: var(--paper);
+  border: 1px solid rgba(185, 141, 63, 0.34);
+  border-radius: var(--radius);
+  box-shadow: 0 28px 90px rgba(33, 25, 24, 0.34);
+}
+
+.confirmation-panel .close-button {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}
+
+.confirmation-panel h2 {
+  max-width: 560px;
+  margin: 0;
+  color: var(--plum);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 44px;
+  line-height: 1;
+}
+
+.confirmation-panel p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.confirmation-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.confirmation-steps div {
+  padding: 16px;
+  background: var(--white);
+  border: 1px solid rgba(79, 36, 56, 0.1);
+  border-radius: var(--radius);
+}
+
+.confirmation-steps strong {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 12px;
+  place-items: center;
+  color: var(--white);
+  background: var(--sage);
+  border-radius: 50%;
+}
+
+.confirmation-steps span {
+  display: block;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.confirmation-actions {
+  padding-top: 4px;
+}
+
+.confirmation-panel textarea {
+  min-height: 180px;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: 13px;
+}
+
 .mobile-action-bar {
   display: none;
 }
@@ -1196,6 +1293,24 @@ details p {
   }
 
   .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .confirmation-screen {
+    padding: 12px;
+  }
+
+  .confirmation-panel {
+    max-height: calc(100vh - 24px);
+    padding: 24px;
+  }
+
+  .confirmation-panel h2 {
+    padding-right: 42px;
+    font-size: 34px;
+  }
+
+  .confirmation-steps {
     grid-template-columns: 1fr;
   }
 

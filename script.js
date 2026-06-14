@@ -10,6 +10,15 @@ const checkoutStatus = document.querySelector("[data-checkout-status]");
 const eventType = document.querySelector("#event-type");
 const quoteDateInput = quoteForm.querySelector('input[name="eventDate"]');
 const checkoutDateInput = checkoutForm.querySelector('input[name="neededBy"]');
+const confirmation = document.querySelector("[data-confirmation]");
+const confirmationTitle = document.querySelector("[data-confirmation-title]");
+const confirmationKicker = document.querySelector("[data-confirmation-kicker]");
+const confirmationMessage = document.querySelector("[data-confirmation-message]");
+const confirmationEmail = document.querySelector("[data-confirmation-email]");
+const confirmationDm = document.querySelector("[data-confirmation-dm]");
+const confirmationCopy = document.querySelector("[data-confirmation-copy]");
+const confirmationSummary = document.querySelector("[data-confirmation-summary]");
+const confirmationStatus = document.querySelector("[data-confirmation-status]");
 const ownerEmail = "juliavalcin@gmail.com";
 const facebookDmUrl = "https://m.me/100064224105993";
 const minNoticeDays = {
@@ -74,6 +83,30 @@ function showNotificationLinks(statusElement, links, message) {
 
 function openNotificationApps(links) {
   window.location.href = links.email;
+}
+
+function showConfirmation({ firstName, kind, eventLabel, links, summary }) {
+  const isQuote = kind === "quote";
+  confirmationKicker.textContent = isQuote ? "Quote request prepared" : "Order details prepared";
+  confirmationTitle.textContent = `Thank you, ${firstName}.`;
+  confirmationMessage.textContent = isQuote
+    ? `Your ${eventLabel} request is ready for Julia. Review the email draft and press send, or copy the details and send them through Facebook DM.`
+    : "Your order details are ready for Julia. Review the email draft and press send, or copy the details and send them through Facebook DM.";
+  confirmationEmail.href = links.email;
+  confirmationDm.href = links.dm;
+  confirmationSummary.value = summary;
+  confirmationCopy.dataset.copyText = summary;
+  confirmationStatus.textContent = "Email handoff started. If your email app did not open, use Open email again.";
+  confirmation.classList.remove("is-hidden");
+  confirmation.setAttribute("aria-hidden", "false");
+  document.body.classList.add("has-confirmation");
+  confirmationEmail.focus({ preventScroll: true });
+}
+
+function hideConfirmation() {
+  confirmation.classList.add("is-hidden");
+  confirmation.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("has-confirmation");
 }
 
 function todayAtMidnight() {
@@ -329,6 +362,13 @@ quoteForm.addEventListener("submit", (event) => {
     links,
     emailBody
   );
+  showConfirmation({
+    firstName,
+    kind: "quote",
+    eventLabel: type,
+    links,
+    summary: emailBody
+  });
   openNotificationApps(links);
 });
 
@@ -399,6 +439,13 @@ checkoutForm.addEventListener("submit", (event) => {
     links,
     emailBody
   );
+  showConfirmation({
+    firstName,
+    kind: "order",
+    eventLabel: "order",
+    links,
+    summary: emailBody
+  });
   openNotificationApps(links);
 });
 
@@ -408,6 +455,26 @@ document.querySelector("[data-copy-quote]").addEventListener("click", (event) =>
 
 document.querySelector("[data-copy-checkout]").addEventListener("click", (event) => {
   copySummary(event.currentTarget, checkoutStatus);
+});
+
+confirmationCopy.addEventListener("click", (event) => {
+  copySummary(event.currentTarget, confirmationStatus);
+});
+
+document.querySelectorAll("[data-confirmation-close]").forEach((button) => {
+  button.addEventListener("click", hideConfirmation);
+});
+
+confirmation.addEventListener("click", (event) => {
+  if (event.target === confirmation) {
+    hideConfirmation();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !confirmation.classList.contains("is-hidden")) {
+    hideConfirmation();
+  }
 });
 
 setMinimumDates();
