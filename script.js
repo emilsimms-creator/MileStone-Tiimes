@@ -11,7 +11,7 @@ const eventType = document.querySelector("#event-type");
 const quoteDateInput = quoteForm.querySelector('input[name="eventDate"]');
 const checkoutDateInput = checkoutForm.querySelector('input[name="neededBy"]');
 const ownerEmail = "juliavalcin@gmail.com";
-const ownerSms = "+18193292391";
+const facebookDmUrl = "https://m.me/100064224105993";
 const minNoticeDays = {
   "Simple Birthday Cake": 5,
   "Custom Cake": 7,
@@ -55,14 +55,10 @@ function buildMailto(subject, body) {
   return `mailto:${ownerEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-function buildSms(body) {
-  return `sms:${ownerSms}?&body=${encodeURIComponent(body)}`;
-}
-
-function ownerNotificationLinks(subject, emailBody, smsBody) {
+function ownerNotificationLinks(subject, emailBody) {
   return {
     email: buildMailto(subject, emailBody),
-    sms: buildSms(smsBody)
+    dm: facebookDmUrl
   };
 }
 
@@ -72,14 +68,11 @@ function showNotificationLinks(statusElement, links, message) {
     <br>
     <a href="${links.email}">Email Julia</a>
     <span aria-hidden="true"> | </span>
-    <a href="${links.sms}">Text Julia</a>
+    <a href="${links.dm}" target="_blank" rel="noreferrer">Facebook DM</a>
   `;
 }
 
-function openNotificationApps(links, shouldOpenSms = false) {
-  if (shouldOpenSms) {
-    window.open(links.sms, "_blank", "noopener,noreferrer");
-  }
+function openNotificationApps(links) {
   window.location.href = links.email;
 }
 
@@ -136,16 +129,16 @@ function noticeMessage(type, dateValue) {
   return `${type} timing looks workable based on the usual ${requiredDays} day notice.`;
 }
 
-function populateHandoff(panelSelector, emailSelector, smsSelector, summarySelector, copySelector, links, summary) {
+function populateHandoff(panelSelector, emailSelector, dmSelector, summarySelector, copySelector, links, summary) {
   const panel = document.querySelector(panelSelector);
   const emailLink = document.querySelector(emailSelector);
-  const smsLink = document.querySelector(smsSelector);
+  const dmLink = document.querySelector(dmSelector);
   const summaryField = document.querySelector(summarySelector);
   const copyButton = document.querySelector(copySelector);
 
   panel.classList.remove("is-hidden");
   emailLink.href = links.email;
-  smsLink.href = links.sms;
+  dmLink.href = links.dm;
   summaryField.value = summary;
   copyButton.dataset.copyText = summary;
 }
@@ -281,14 +274,25 @@ document.querySelectorAll("[data-filter]").forEach((button) => {
 quoteForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const data = new FormData(quoteForm);
+  const firstName = data.get("firstName");
+  const lastName = data.get("lastName");
+  const email = data.get("email");
+  const phone = data.get("phone");
+  const fullName = `${firstName} ${lastName}`.trim();
   const type = data.get("eventType");
   const date = data.get("eventDate");
   const servings = data.get("servings") || "Not provided";
   const details = data.get("details") || "No extra details provided.";
   const timingNote = noticeMessage(type, date);
-  const subject = `MileStone Tiimes quote request: ${type}`;
+  const subject = `MileStone Tiimes quote request: ${fullName} - ${type}`;
   const emailBody = [
     "New MileStone Tiimes quote request",
+    "",
+    "Client contact info:",
+    `First name: ${firstName}`,
+    `Last name: ${lastName}`,
+    `Email address: ${email}`,
+    `Phone number: ${phone}`,
     "",
     `Celebration type: ${type}`,
     `Event date: ${date}`,
@@ -302,52 +306,62 @@ quoteForm.addEventListener("submit", (event) => {
     "Payment model: e-transfer deposit; cash remainder on pickup or delivery.",
     "Pickup/delivery: Gloucester-area pickup or Ottawa local delivery.",
     "",
+    "Submitted by:",
+    `Client name: ${fullName}`,
+    `Email address: ${email}`,
+    `Phone number: ${phone}`,
     `Submitted from: ${window.location.href}`,
     `Submitted at: ${new Date().toLocaleString()}`
   ].join("\n");
-  const smsBody = `New MileStone Tiimes quote request: ${type} for ${date}. Check email for details.`;
-  const links = ownerNotificationLinks(subject, emailBody, smsBody);
+  const links = ownerNotificationLinks(subject, emailBody);
 
   showNotificationLinks(
     quoteStatus,
     links,
-    `${timingNote} Quote request prepared. Use the links or copy the details below.`
+    `${timingNote} Quote request prepared. Open email to send it, or copy the details and send them by Facebook DM.`
   );
   populateHandoff(
     "[data-quote-handoff]",
     "[data-quote-email]",
-    "[data-quote-sms]",
+    "[data-quote-dm]",
     "[data-quote-summary]",
     "[data-copy-quote]",
     links,
     emailBody
   );
-  openNotificationApps(links, false);
+  openNotificationApps(links);
 });
 
 checkoutForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const data = new FormData(checkoutForm);
-  const name = data.get("name");
-  const contact = data.get("contact");
+  const firstName = data.get("firstName");
+  const lastName = data.get("lastName");
+  const email = data.get("email");
+  const phone = data.get("phone");
+  const fullName = `${firstName} ${lastName}`.trim();
   const neededBy = data.get("neededBy");
   const fulfillment = data.get("fulfillment");
   const notes = data.get("notes") || "No extra notes provided.";
   const count = cartTotalCount();
 
   if (count === 0) {
-    checkoutStatus.textContent = `${name}, add treats to the order list or use the custom quote form before confirming a deposit.`;
+    checkoutStatus.textContent = `${firstName}, add treats to the order list or use the custom quote form before confirming a deposit.`;
     openCart();
     return;
   }
 
-  const subject = `MileStone Tiimes order: ${name} for ${neededBy}`;
+  const subject = `MileStone Tiimes order: ${fullName} for ${neededBy}`;
   const timingNote = noticeMessage("Standard Treat Box", neededBy);
   const emailBody = [
     "New MileStone Tiimes order details",
     "",
-    `Customer name: ${name}`,
-    `Customer contact: ${contact}`,
+    "Client contact info:",
+    `First name: ${firstName}`,
+    `Last name: ${lastName}`,
+    `Email address: ${email}`,
+    `Phone number: ${phone}`,
+    "",
     `Needed by: ${neededBy}`,
     `Fulfillment: ${fulfillment}`,
     "",
@@ -362,27 +376,30 @@ checkoutForm.addEventListener("submit", (event) => {
     "Payment model: e-transfer deposit; cash remainder on pickup or delivery.",
     "Pickup/delivery: Gloucester-area pickup or Ottawa local delivery.",
     "",
+    "Submitted by:",
+    `Client name: ${fullName}`,
+    `Email address: ${email}`,
+    `Phone number: ${phone}`,
     `Submitted from: ${window.location.href}`,
     `Submitted at: ${new Date().toLocaleString()}`
   ].join("\n");
-  const smsBody = `New MileStone Tiimes order from ${name} for ${neededBy}. ${count} item(s). Check email for details.`;
-  const links = ownerNotificationLinks(subject, emailBody, smsBody);
+  const links = ownerNotificationLinks(subject, emailBody);
 
   showNotificationLinks(
     checkoutStatus,
     links,
-    `${timingNote} Order details prepared. Use the links or copy the details below.`
+    `${timingNote} Order details prepared. Open email to send it, or copy the details and send them by Facebook DM.`
   );
   populateHandoff(
     "[data-checkout-handoff]",
     "[data-checkout-email]",
-    "[data-checkout-sms]",
+    "[data-checkout-dm]",
     "[data-checkout-summary]",
     "[data-copy-checkout]",
     links,
     emailBody
   );
-  openNotificationApps(links, false);
+  openNotificationApps(links);
 });
 
 document.querySelector("[data-copy-quote]").addEventListener("click", (event) => {

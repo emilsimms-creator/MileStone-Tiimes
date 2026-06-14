@@ -319,6 +319,26 @@
 
           <form class="quote-form" id="quote-form">
             <h3>Request a custom quote</h3>
+            <p class="form-subhead">Contact info</p>
+            <div class="field-row">
+              <label>
+                First name
+                <input type="text" name="firstName" autocomplete="given-name" required>
+              </label>
+              <label>
+                Last name
+                <input type="text" name="lastName" autocomplete="family-name" required>
+              </label>
+            </div>
+            <label>
+              Email address
+              <input type="email" name="email" autocomplete="email" required>
+            </label>
+            <label>
+              Phone number
+              <input type="tel" name="phone" autocomplete="tel" required>
+            </label>
+            <p class="form-subhead">Celebration details</p>
             <label>
               Celebration type
               <select name="eventType" id="event-type" required>
@@ -348,7 +368,7 @@
               <p>Quote details are ready for Julia.</p>
               <div class="handoff-actions">
                 <a class="button button-primary" href="#" data-quote-email>Open email</a>
-                <a class="button button-soft-outline" href="#" data-quote-sms>Open text</a>
+                <a class="button button-soft-outline" href="#" data-quote-dm target="_blank" rel="noreferrer">Open Facebook DM</a>
                 <button class="button button-dark" type="button" data-copy-quote>Copy details</button>
               </div>
               <textarea data-quote-summary rows="7" readonly aria-label="Quote request summary"></textarea>
@@ -435,13 +455,23 @@
 
           <form class="checkout-form" id="checkout-form">
             <h3>Order details</h3>
+            <div class="field-row">
+              <label>
+                First name
+                <input type="text" name="firstName" autocomplete="given-name" required>
+              </label>
+              <label>
+                Last name
+                <input type="text" name="lastName" autocomplete="family-name" required>
+              </label>
+            </div>
             <label>
-              Name
-              <input type="text" name="name" autocomplete="name" required>
+              Email address
+              <input type="email" name="email" autocomplete="email" required>
             </label>
             <label>
-              Email or phone
-              <input type="text" name="contact" autocomplete="email" required>
+              Phone number
+              <input type="tel" name="phone" autocomplete="tel" required>
             </label>
             <label>
               Needed by
@@ -465,7 +495,7 @@
               <p>Order details are ready for Julia.</p>
               <div class="handoff-actions">
                 <a class="button button-primary" href="#" data-checkout-email>Open email</a>
-                <a class="button button-soft-outline" href="#" data-checkout-sms>Open text</a>
+                <a class="button button-soft-outline" href="#" data-checkout-dm target="_blank" rel="noreferrer">Open Facebook DM</a>
                 <button class="button button-dark" type="button" data-copy-checkout>Copy details</button>
               </div>
               <textarea data-checkout-summary rows="7" readonly aria-label="Order summary"></textarea>
