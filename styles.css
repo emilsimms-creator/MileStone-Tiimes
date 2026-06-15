@@ -325,6 +325,7 @@ button {
 
 .hero-facts dd {
   margin: 5px 0 0;
+  line-height: 1.25;
   font-weight: 800;
 }
 
@@ -704,6 +705,18 @@ button {
   margin: 0;
   padding: 92px max(20px, calc((100% - 1160px) / 2));
   background: var(--mint);
+}
+
+.order-notice-copy {
+  margin-top: 22px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.56);
+  border: 1px solid rgba(92, 117, 104, 0.2);
+  border-radius: var(--radius);
+}
+
+.order-notice-copy strong {
+  color: var(--plum);
 }
 
 .notice-grid {

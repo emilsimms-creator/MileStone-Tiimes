@@ -25,18 +25,18 @@ const confirmationStatus = document.querySelector("[data-confirmation-status]");
 const ownerEmail = "juliavalcin@gmail.com";
 const facebookDmUrl = "https://m.me/100064224105993";
 const minNoticeDays = {
-  "Simple Birthday Cake": 5,
-  "Custom Cake": 7,
-  "Wedding Cake": 14,
-  "Treat Table": 14,
-  "Build a Treat Box": 2
+  "Simple Birthday Cake": 1,
+  "Custom Cake": 2,
+  "Wedding Cake": 2,
+  "Treat Table": 2,
+  "Build a Treat Box": 1
 };
 
 const productMeta = {
-  "Custom Cupcakes": { notice: "48 hour notice", category: "Treats" },
-  "Cake Pops": { notice: "48 hour notice", category: "Treats" },
-  "Rum Balls": { notice: "48 hour notice", category: "Treats" },
-  "Build a Treat Box": { notice: "Request pricing", category: "Treats" }
+  "Custom Cupcakes": { notice: "Minimum 24 hours", category: "Treats" },
+  "Cake Pops": { notice: "Minimum 24 hours", category: "Treats" },
+  "Rum Balls": { notice: "48 hours", category: "Treats" },
+  "Build a Treat Box": { notice: "Minimum 24 hours", category: "Treats" }
 };
 
 const cart = new Map();
@@ -133,6 +133,12 @@ function formatDateInput(date) {
   return date.toISOString().slice(0, 10);
 }
 
+function noticeLabel(days) {
+  if (days === 1) return "24 hours";
+  if (days === 2) return "48 hours";
+  return `${days} days`;
+}
+
 function daysUntil(dateValue) {
   const selected = new Date(`${dateValue}T00:00:00`);
   const diff = selected.getTime() - todayAtMidnight().getTime();
@@ -140,9 +146,9 @@ function daysUntil(dateValue) {
 }
 
 function setMinimumDates() {
-  const twoDaysFromNow = formatDateInput(addDays(todayAtMidnight(), 2));
-  quoteDateInput.min = twoDaysFromNow;
-  checkoutDateInput.min = twoDaysFromNow;
+  const oneDayFromNow = formatDateInput(addDays(todayAtMidnight(), 1));
+  quoteDateInput.min = oneDayFromNow;
+  checkoutDateInput.min = oneDayFromNow;
 }
 
 function updateQuoteMinimumDate() {
@@ -156,18 +162,18 @@ function updateQuoteMinimumDate() {
   }
 
   if (type) {
-    quoteStatus.textContent = `${type} usually needs ${requiredDays} days of notice.`;
+    quoteStatus.textContent = `${type} usually needs ${noticeLabel(requiredDays)} of notice. Some custom orders may require additional preparation time.`;
   }
 }
 
 function noticeMessage(type, dateValue) {
-  const requiredDays = minNoticeDays[type] || 2;
+  const requiredDays = minNoticeDays[type] || 1;
   const availableDays = daysUntil(dateValue);
   if (Number.isNaN(availableDays)) return "";
   if (availableDays < requiredDays) {
-    return `Heads up: ${type} usually needs ${requiredDays} days of notice. Julia can review this as a rush request, but availability is not guaranteed.`;
+    return `Heads up: ${type} usually needs ${noticeLabel(requiredDays)} of notice. Julia can review this as a rush request, but availability is not guaranteed.`;
   }
-  return `${type} timing looks workable based on the usual ${requiredDays} day notice.`;
+  return `${type} timing looks workable based on the usual ${noticeLabel(requiredDays)} notice. Some custom orders may require additional preparation time.`;
 }
 
 function populateHandoff(panelSelector, emailSelector, dmSelector, summarySelector, copySelector, links, summary) {
@@ -321,7 +327,7 @@ treatBoxBuilder.addEventListener("submit", (event) => {
   }
 
   addProduct("Build a Treat Box", {
-    notice: "Request pricing",
+    notice: "Minimum 24 hours",
     details: selected
   });
   treatBoxStatus.textContent = `Treat box added with ${selected.length} selections.`;
@@ -383,7 +389,7 @@ quoteForm.addEventListener("submit", (event) => {
     "",
     `Timing note: ${timingNote}`,
     "",
-    "Payment model: e-transfer deposit; cash remainder on pickup or delivery.",
+    "Payment model: e-transfer deposit; remaining balance paid before pickup or delivery.",
     "Pickup/delivery: Gloucester-area pickup or Ottawa local delivery.",
     "",
     "Submitted by:",
@@ -460,7 +466,7 @@ checkoutForm.addEventListener("submit", (event) => {
     "",
     `Timing note: ${timingNote}`,
     "",
-    "Payment model: e-transfer deposit; cash remainder on pickup or delivery.",
+    "Payment model: e-transfer deposit; remaining balance paid before pickup or delivery.",
     "Pickup/delivery: Gloucester-area pickup or Ottawa local delivery.",
     "",
     "Submitted by:",

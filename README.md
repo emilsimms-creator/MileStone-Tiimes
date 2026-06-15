@@ -9,7 +9,7 @@ First static ecommerce presence for MileStone Tiimes, built for GitHub Pages.
 - Cart-style order list for quick treats.
 - Quote request flow for custom cakes, wedding cakes, and treat tables.
 - Build a Treat Box configurator with minimum 3-item selection and cart/order summary details.
-- Checkout details flow aligned to the current payment model: e-transfer deposit and cash remainder at pickup or delivery.
+- Checkout details flow aligned to the current payment model: e-transfer deposit and remaining balance before pickup or delivery.
 - Email and Facebook DM handoff links that prepare order details for juliavalcin@gmail.com and the MileStone Tiimes Facebook inbox.
 - Occasion-led shopping paths for birthdays, weddings, event tables, and gift boxes.
 - Order handoff fallback panels with copyable details for email or Facebook Messenger.
