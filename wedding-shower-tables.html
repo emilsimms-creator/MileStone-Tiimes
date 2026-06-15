@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wedding and Shower Tables | MileStone Tiimes</title>
+    <meta
+      name="description"
+      content="Elegant cakes and dessert tables for weddings, bridal showers, baby showers, and polished celebration moments in Ottawa."
+    >
+    <meta property="og:title" content="Wedding and Shower Tables | MileStone Tiimes">
+    <meta
+      property="og:description"
+      content="Plan elegant cakes and coordinated dessert tables for weddings and showers."
+    >
+    <meta property="og:image" content="assets/images/wedding-shower-cake-placeholder.png">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="path-page">
+    <header class="site-header" data-header>
+      <a class="brand" href="index.html#top" aria-label="MileStone Tiimes home">
+        <span class="brand-mark">MT</span>
+        <span>
+          <strong>MileStone Tiimes</strong>
+          <small>Cake & Dessert Treats</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Open menu</span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="index.html#shop">Shop</a>
+        <a href="index.html#occasions">Occasions</a>
+        <a href="index.html#custom">Custom</a>
+        <a href="index.html#events">Events</a>
+        <a href="index.html#checkout">Checkout</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <a class="button button-primary header-cta" href="index.html#custom">Request quote</a>
+    </header>
+
+    <main id="top">
+      <section class="path-hero">
+        <div class="path-hero-copy">
+          <a class="text-link" href="index.html#events">Back to celebration paths</a>
+          <p class="section-kicker">02 Wedding and shower tables</p>
+          <h1>Dessert moments that feel composed, graceful, and event-ready.</h1>
+          <p>
+            For weddings, bridal showers, baby showers, and intimate receptions,
+            MileStone Tiimes can shape cakes and treat tables around the palette,
+            guest count, and flow of the celebration.
+          </p>
+          <div class="path-actions">
+            <a class="button button-primary" href="index.html#custom">Plan an event table</a>
+            <a class="button button-soft-outline" href="index.html#checkout">Open checkout</a>
+          </div>
+        </div>
+        <figure class="path-hero-image">
+          <img src="assets/images/wedding-shower-cake-placeholder.png" alt="Elegant white and gold celebration cake by MileStone Tiimes">
+        </figure>
+      </section>
+
+      <section class="section path-section" aria-labelledby="wedding-plan-title">
+        <div class="path-section-heading">
+          <p class="section-kicker">Event table planning</p>
+          <h2 id="wedding-plan-title">Designed around palette, people, and presentation.</h2>
+        </div>
+        <div class="path-feature-grid">
+          <article>
+            <h3>Palette-led desserts</h3>
+            <p>Coordinate colors, textures, metallics, florals, toppers, and finishing details around the event design.</p>
+          </article>
+          <article>
+            <h3>Guest-count thinking</h3>
+            <p>Use servings, timing, and table plans to shape the right mix of cake, cupcakes, cake pops, and custom treats.</p>
+          </article>
+          <article>
+            <h3>Quote-first confidence</h3>
+            <p>Event tables are reviewed before confirmation so the scope, deposit, and pickup or delivery plan are clear.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section path-gallery-section" aria-labelledby="wedding-gallery-title">
+        <div>
+          <p class="section-kicker">Visual direction</p>
+          <h2 id="wedding-gallery-title">Soft, elegant, and celebration-ready.</h2>
+        </div>
+        <div class="path-gallery">
+          <img src="assets/images/wedding-shower-cake-placeholder.png" alt="White and gold cake with floral styling">
+          <img src="assets/images/celebration-detail.jpg" alt="MileStone Tiimes celebration dessert detail">
+          <img src="assets/images/cake-square.jpg" alt="Custom cake design for a premium celebration">
+        </div>
+      </section>
+
+      <section class="path-cta" aria-label="Start wedding or shower request">
+        <div>
+          <p class="section-kicker">Start with the table vision</p>
+          <h2>Share the occasion, guest count, palette, and date.</h2>
+        </div>
+        <a class="button button-primary" href="index.html#custom">Request an event quote</a>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contact">
+      <div>
+        <a class="brand footer-brand" href="index.html#top" aria-label="MileStone Tiimes home">
+          <span class="brand-mark">MT</span>
+          <span>
+            <strong>MileStone Tiimes</strong>
+            <small>Cake & Dessert Treats</small>
+          </span>
+        </a>
+        <p>Ottawa custom cakes, cupcakes, cake pops, rum balls, wedding cakes, and treat tables.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html#shop">Shop treats</a>
+        <a href="index.html#custom">Request quote</a>
+        <a href="https://www.facebook.com/people/MileStone-Tiimes/100064224105993/" target="_blank" rel="noreferrer">Facebook</a>
+      </div>
+    </footer>
+
+    <div class="mobile-action-bar" aria-label="Quick actions">
+      <a href="index.html#shop">Shop treats</a>
+      <a href="index.html#custom">Custom request</a>
+    </div>
+
+    <script>
+      const header = document.querySelector("[data-header]");
+      const navToggle = document.querySelector(".nav-toggle");
+      navToggle.addEventListener("click", () => {
+        const isOpen = header.classList.toggle("nav-open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Giftable Treats | MileStone Tiimes</title>
+    <meta
+      name="description"
+      content="Giftable cupcakes, cake pops, treat boxes, and dessert gifts for thank-you moments, surprise deliveries, and personal celebrations."
+    >
+    <meta property="og:title" content="Giftable Treats | MileStone Tiimes">
+    <meta
+      property="og:description"
+      content="Build sweet gift boxes and small-batch treat moments for the people worth celebrating."
+    >
+    <meta property="og:image" content="assets/images/giftable-mothers-day-box-placeholder.png">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="path-page">
+    <header class="site-header" data-header>
+      <a class="brand" href="index.html#top" aria-label="MileStone Tiimes home">
+        <span class="brand-mark">MT</span>
+        <span>
+          <strong>MileStone Tiimes</strong>
+          <small>Cake & Dessert Treats</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Open menu</span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="index.html#shop">Shop</a>
+        <a href="index.html#occasions">Occasions</a>
+        <a href="index.html#custom">Custom</a>
+        <a href="index.html#events">Events</a>
+        <a href="index.html#checkout">Checkout</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <a class="button button-primary header-cta" href="index.html#treat-box">Build a box</a>
+    </header>
+
+    <main id="top">
+      <section class="path-hero">
+        <div class="path-hero-copy">
+          <a class="text-link" href="index.html#events">Back to celebration paths</a>
+          <p class="section-kicker">03 Giftable treats</p>
+          <h1>Sweet gifts for thank-yous, surprises, and personal wins.</h1>
+          <p>
+            Gift boxes, cupcakes, cake pops, dipped treats, and small-batch sweets make
+            it easier to send something thoughtful, polished, and ready to enjoy.
+          </p>
+          <div class="path-actions">
+            <a class="button button-primary" href="index.html#treat-box">Build a treat box</a>
+            <a class="button button-soft-outline" href="index.html#shop">Shop favorites</a>
+          </div>
+        </div>
+        <figure class="path-hero-image">
+          <img src="assets/images/giftable-mothers-day-box-placeholder.png" alt="Pink MileStone Tiimes giftable dessert box">
+        </figure>
+      </section>
+
+      <section class="section path-section" aria-labelledby="gift-plan-title">
+        <div class="path-section-heading">
+          <p class="section-kicker">Gift planning</p>
+          <h2 id="gift-plan-title">Thoughtful treats without overcomplicating the order.</h2>
+        </div>
+        <div class="path-feature-grid">
+          <article>
+            <h3>Choose the feeling</h3>
+            <p>Send something soft and floral, bold and glamorous, seasonal, personal, or tied to a milestone message.</p>
+          </article>
+          <article>
+            <h3>Build the mix</h3>
+            <p>Use the treat box builder for cake pops, mini cakes, dipped treats, candy apples, and other favorites.</p>
+          </article>
+          <article>
+            <h3>Plan the handoff</h3>
+            <p>Confirm pickup or local Ottawa delivery details before the deposit and final balance are completed.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section path-gallery-section" aria-labelledby="gift-gallery-title">
+        <div>
+          <p class="section-kicker">Visual direction</p>
+          <h2 id="gift-gallery-title">Boxed, pretty, and easy to love.</h2>
+        </div>
+        <div class="path-gallery">
+          <img src="assets/images/giftable-mothers-day-box-placeholder.png" alt="Mother's Day dessert box with heart cake and cupcakes">
+          <img src="assets/images/giftable-cupcake-box-placeholder.png" alt="Giftable floral cupcake box">
+        </div>
+      </section>
+
+      <section class="path-cta" aria-label="Build giftable treat box">
+        <div>
+          <p class="section-kicker">Start with three favorites</p>
+          <h2>Mix and match a treat box for the person you want to celebrate.</h2>
+        </div>
+        <a class="button button-primary" href="index.html#treat-box">Build a treat box</a>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contact">
+      <div>
+        <a class="brand footer-brand" href="index.html#top" aria-label="MileStone Tiimes home">
+          <span class="brand-mark">MT</span>
+          <span>
+            <strong>MileStone Tiimes</strong>
+            <small>Cake & Dessert Treats</small>
+          </span>
+        </a>
+        <p>Ottawa custom cakes, cupcakes, cake pops, rum balls, wedding cakes, and treat tables.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html#shop">Shop treats</a>
+        <a href="index.html#custom">Request quote</a>
+        <a href="https://www.facebook.com/people/MileStone-Tiimes/100064224105993/" target="_blank" rel="noreferrer">Facebook</a>
+      </div>
+    </footer>
+
+    <div class="mobile-action-bar" aria-label="Quick actions">
+      <a href="index.html#shop">Shop treats</a>
+      <a href="index.html#custom">Custom request</a>
+    </div>
+
+    <script>
+      const header = document.querySelector("[data-header]");
+      const navToggle = document.querySelector(".nav-toggle");
+      navToggle.addEventListener("click", () => {
+        const isOpen = header.classList.toggle("nav-open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+    </script>
+  </body>
+</html>

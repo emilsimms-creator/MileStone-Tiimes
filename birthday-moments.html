@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Birthday Moments | MileStone Tiimes</title>
+    <meta
+      name="description"
+      content="Birthday cakes, cupcakes, cake pops, and dessert treats for personal milestone celebrations in Ottawa."
+    >
+    <meta property="og:title" content="Birthday Moments | MileStone Tiimes">
+    <meta
+      property="og:description"
+      content="Plan custom birthday cakes and dessert treats that feel personal, polished, and celebration-ready."
+    >
+    <meta property="og:image" content="assets/images/birthday-diva-placeholder.png">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="path-page">
+    <header class="site-header" data-header>
+      <a class="brand" href="index.html#top" aria-label="MileStone Tiimes home">
+        <span class="brand-mark">MT</span>
+        <span>
+          <strong>MileStone Tiimes</strong>
+          <small>Cake & Dessert Treats</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Open menu</span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="index.html#shop">Shop</a>
+        <a href="index.html#occasions">Occasions</a>
+        <a href="index.html#custom">Custom</a>
+        <a href="index.html#events">Events</a>
+        <a href="index.html#checkout">Checkout</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <a class="button button-primary header-cta" href="index.html#custom">Request quote</a>
+    </header>
+
+    <main id="top">
+      <section class="path-hero">
+        <div class="path-hero-copy">
+          <a class="text-link" href="index.html#events">Back to celebration paths</a>
+          <p class="section-kicker">01 Birthday moments</p>
+          <h1>Make the birthday feel like it was made for them.</h1>
+          <p>
+            From simple birthday cakes to high-drama custom designs, cupcakes, cake pops,
+            and dessert boxes, MileStone Tiimes builds sweet moments around the person
+            being celebrated.
+          </p>
+          <div class="path-actions">
+            <a class="button button-primary" href="index.html#shop">Shop quick treats</a>
+            <a class="button button-soft-outline" href="index.html#custom">Request birthday cake</a>
+          </div>
+        </div>
+        <figure class="path-hero-image">
+          <img src="assets/images/birthday-diva-placeholder.png" alt="Glam birthday cake by MileStone Tiimes">
+        </figure>
+      </section>
+
+      <section class="section path-section" aria-labelledby="birthday-plan-title">
+        <div class="path-section-heading">
+          <p class="section-kicker">Birthday planning</p>
+          <h2 id="birthday-plan-title">Built for the exact personality of the moment.</h2>
+        </div>
+        <div class="path-feature-grid">
+          <article>
+            <h3>Signature cake direction</h3>
+            <p>Choose a mood, color palette, age, name, topper idea, and any inspiration that should shape the finished cake.</p>
+          </article>
+          <article>
+            <h3>Treats around the cake</h3>
+            <p>Add cupcakes, cake pops, rum balls, or a custom treat box to create a fuller dessert table.</p>
+          </article>
+          <article>
+            <h3>Pickup or local delivery</h3>
+            <p>Confirm Gloucester-area pickup or Ottawa delivery timing when the order details are reviewed.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section path-gallery-section" aria-labelledby="birthday-gallery-title">
+        <div>
+          <p class="section-kicker">Visual direction</p>
+          <h2 id="birthday-gallery-title">Personal, polished, and memorable.</h2>
+        </div>
+        <div class="path-gallery">
+          <img src="assets/images/birthday-diva-placeholder.png" alt="Diva birthday cake with black, gold, and blush styling">
+          <img src="assets/images/birthday-black-gold-placeholder.png" alt="Black and gold custom birthday cake">
+        </div>
+      </section>
+
+      <section class="path-cta" aria-label="Start birthday order">
+        <div>
+          <p class="section-kicker">Ready when the details are</p>
+          <h2>Start with the occasion, date, and design notes.</h2>
+        </div>
+        <a class="button button-primary" href="index.html#custom">Request a birthday quote</a>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contact">
+      <div>
+        <a class="brand footer-brand" href="index.html#top" aria-label="MileStone Tiimes home">
+          <span class="brand-mark">MT</span>
+          <span>
+            <strong>MileStone Tiimes</strong>
+            <small>Cake & Dessert Treats</small>
+          </span>
+        </a>
+        <p>Ottawa custom cakes, cupcakes, cake pops, rum balls, wedding cakes, and treat tables.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html#shop">Shop treats</a>
+        <a href="index.html#custom">Request quote</a>
+        <a href="https://www.facebook.com/people/MileStone-Tiimes/100064224105993/" target="_blank" rel="noreferrer">Facebook</a>
+      </div>
+    </footer>
+
+    <div class="mobile-action-bar" aria-label="Quick actions">
+      <a href="index.html#shop">Shop treats</a>
+      <a href="index.html#custom">Custom request</a>
+    </div>
+
+    <script>
+      const header = document.querySelector("[data-header]");
+      const navToggle = document.querySelector(".nav-toggle");
+      navToggle.addEventListener("click", () => {
+        const isOpen = header.classList.toggle("nav-open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+    </script>
+  </body>
+</html>
