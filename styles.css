@@ -608,7 +608,9 @@ button {
 }
 
 .treat-box-section {
+  margin-top: 58px;
   padding-top: 58px;
+  border-top: 1px solid rgba(79, 36, 56, 0.12);
 }
 
 .treat-box-layout {
