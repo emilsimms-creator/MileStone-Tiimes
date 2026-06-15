@@ -160,7 +160,7 @@
             <span>Gift</span>
             <h3>Boxes that feel personal</h3>
             <p>Best for thank-you gifts, surprise deliveries, office moments, and sweet congratulations.</p>
-            <button class="button button-soft-outline" type="button" data-add-product="Standard Treat Box">Add gift box</button>
+            <button class="button button-soft-outline" type="button" data-scroll-target="#treat-box">Build a box</button>
           </article>
         </div>
       </section>
@@ -243,15 +243,15 @@
           <article class="product-card" data-category="treats">
             <img src="assets/images/bling-square.jpg" alt="Sparkly MileStone Tiimes custom dessert box graphic">
             <div class="product-body">
-              <p class="product-type">Request pricing</p>
-              <h3>Standard Treat Boxes</h3>
-              <p>Curated dessert boxes for birthdays, thank-you gifts, office moments, and surprise deliveries.</p>
+              <p class="product-type">Choose 3 or more</p>
+              <h3>Build a Treat Box</h3>
+              <p>Mix and match your favorites to create the perfect treat box for any occasion.</p>
               <ul>
-                <li>Mixed treats</li>
-                <li>Gift-ready finish</li>
-                <li>Theme notes welcome</li>
+                <li>Cake pops and mini cakes</li>
+                <li>Chocolate-dipped favorites</li>
+                <li>Candy apples, classic or custom</li>
               </ul>
-              <button class="button button-dark" type="button" data-add-product="Standard Treat Box">Add to order</button>
+              <button class="button button-dark" type="button" data-scroll-target="#treat-box">Build your box</button>
             </div>
           </article>
 
@@ -284,6 +284,76 @@
               <button class="button button-dark" type="button" data-quote="Treat Table">Plan a treat table</button>
             </div>
           </article>
+        </div>
+      </section>
+
+      <section class="section treat-box-section" id="treat-box" aria-labelledby="treat-box-title">
+        <div class="treat-box-layout">
+          <div>
+            <p class="section-kicker">Build a Treat Box</p>
+            <h2 id="treat-box-title">Mix and match your favorites.</h2>
+            <p>
+              Choose from the following treats to create your custom treat box.
+              Minimum selection: choose 3 items to start your treat box.
+            </p>
+            <div class="treat-box-note">
+              <strong data-treat-box-count>0 selected</strong>
+              <span>Mix and match your favorites to create the perfect treat box for any occasion.</span>
+            </div>
+          </div>
+
+          <form class="treat-box-builder" id="treat-box-builder">
+            <fieldset>
+              <legend>Signature treats</legend>
+              <label class="treat-option">
+                <input type="checkbox" name="treats" value="Cake Pops">
+                <span>Cake Pops</span>
+              </label>
+              <label class="treat-option">
+                <input type="checkbox" name="treats" value="Mini Cakes">
+                <span>Mini Cakes</span>
+              </label>
+            </fieldset>
+
+            <fieldset>
+              <legend>Chocolate-Dipped</legend>
+              <label class="treat-option">
+                <input type="checkbox" name="treats" value="Chocolate-Dipped Strawberries">
+                <span>Strawberries</span>
+              </label>
+              <label class="treat-option">
+                <input type="checkbox" name="treats" value="Chocolate-Dipped Pretzel Rods">
+                <span>Pretzel Rods</span>
+              </label>
+              <label class="treat-option">
+                <input type="checkbox" name="treats" value="Chocolate-Dipped Pretzel Twists">
+                <span>Pretzel Twists</span>
+              </label>
+              <label class="treat-option">
+                <input type="checkbox" name="treats" value="Chocolate-Dipped Rice Krispy Squares">
+                <span>Rice Krispy Squares</span>
+              </label>
+              <label class="treat-option">
+                <input type="checkbox" name="treats" value="Chocolate-Dipped Oreo Cookies">
+                <span>Oreo Cookies</span>
+              </label>
+            </fieldset>
+
+            <fieldset>
+              <legend>Candy Apples</legend>
+              <label class="treat-option">
+                <input type="checkbox" name="treats" value="Candy Apples - Classic">
+                <span>Classic</span>
+              </label>
+              <label class="treat-option">
+                <input type="checkbox" name="treats" value="Candy Apples - Custom">
+                <span>Custom</span>
+              </label>
+            </fieldset>
+
+            <button class="button button-primary" type="submit">Add treat box to order</button>
+            <p class="form-note" data-treat-box-status aria-live="polite">Choose at least 3 items.</p>
+          </form>
         </div>
       </section>
 
@@ -347,7 +417,7 @@
                 <option>Custom Cake</option>
                 <option>Wedding Cake</option>
                 <option>Treat Table</option>
-                <option>Standard Treat Box</option>
+                <option>Build a Treat Box</option>
               </select>
             </label>
             <label>

@@ -607,6 +607,96 @@ button {
   margin-top: auto;
 }
 
+.treat-box-section {
+  padding-top: 58px;
+}
+
+.treat-box-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.74fr) minmax(320px, 1fr);
+  gap: 56px;
+  align-items: start;
+}
+
+.treat-box-layout h2 {
+  margin: 0;
+  color: var(--plum);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 48px;
+  line-height: 0.98;
+}
+
+.treat-box-layout p {
+  color: var(--muted);
+}
+
+.treat-box-note {
+  display: grid;
+  gap: 6px;
+  margin-top: 28px;
+  padding: 18px;
+  background: var(--white);
+  border: 1px solid rgba(79, 36, 56, 0.1);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 32px rgba(79, 36, 56, 0.07);
+}
+
+.treat-box-note strong {
+  color: var(--berry);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+}
+
+.treat-box-note span {
+  color: var(--muted);
+}
+
+.treat-box-builder {
+  display: grid;
+  gap: 16px;
+  padding: 26px;
+  background: var(--white);
+  border: 1px solid rgba(79, 36, 56, 0.1);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.treat-box-builder fieldset {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 18px;
+  border: 1px solid rgba(79, 36, 56, 0.12);
+  border-radius: var(--radius);
+}
+
+.treat-box-builder legend {
+  padding: 0 8px;
+  color: var(--plum);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.treat-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 42px;
+  padding: 10px 12px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid rgba(79, 36, 56, 0.1);
+  border-radius: 6px;
+  font-weight: 800;
+}
+
+.treat-option input {
+  width: 18px;
+  min-height: 18px;
+  accent-color: var(--berry);
+}
+
 .custom-section {
   width: auto;
   margin: 0;
@@ -983,6 +1073,14 @@ details p {
   font-size: 14px;
 }
 
+.cart-line small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
 .quantity-controls {
   display: inline-flex;
   align-items: center;
@@ -1165,6 +1263,7 @@ details p {
   .order-strip,
   .trust-strip,
   .intro-grid,
+  .treat-box-layout,
   .split-layout,
   .checkout-grid,
   .founder-section,
@@ -1268,9 +1367,14 @@ details p {
   .occasion-grid,
   .process-grid,
   .milestone-grid,
+  .treat-box-layout,
   .notice-grid,
   .visual-band {
     grid-template-columns: 1fr;
+  }
+
+  .treat-box-layout h2 {
+    font-size: 34px;
   }
 
   .product-card-wide {

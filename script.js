@@ -3,6 +3,9 @@ const navToggle = document.querySelector(".nav-toggle");
 const cartDrawer = document.querySelector("[data-cart-drawer]");
 const cartItems = document.querySelector("[data-cart-items]");
 const cartCount = document.querySelector("[data-cart-count]");
+const treatBoxBuilder = document.querySelector("#treat-box-builder");
+const treatBoxCount = document.querySelector("[data-treat-box-count]");
+const treatBoxStatus = document.querySelector("[data-treat-box-status]");
 const quoteForm = document.querySelector("#quote-form");
 const checkoutForm = document.querySelector("#checkout-form");
 const quoteStatus = document.querySelector("[data-quote-status]");
@@ -26,14 +29,14 @@ const minNoticeDays = {
   "Custom Cake": 7,
   "Wedding Cake": 14,
   "Treat Table": 14,
-  "Standard Treat Box": 2
+  "Build a Treat Box": 2
 };
 
 const productMeta = {
   "Custom Cupcakes": { notice: "48 hour notice", category: "Treats" },
   "Cake Pops": { notice: "48 hour notice", category: "Treats" },
   "Rum Balls": { notice: "48 hour notice", category: "Treats" },
-  "Standard Treat Box": { notice: "Request pricing", category: "Treats" }
+  "Build a Treat Box": { notice: "Request pricing", category: "Treats" }
 };
 
 const cart = new Map();
@@ -56,7 +59,12 @@ function formatCartItems() {
   if (cart.size === 0) return "No quick treats selected.";
 
   return Array.from(cart.values())
-    .map((item) => `- ${item.name} x ${item.quantity} (${item.notice})`)
+    .map((item) => {
+      const details = item.details && item.details.length
+        ? `\n  Selected treats: ${item.details.join(", ")}`
+        : "";
+      return `- ${item.name} x ${item.quantity} (${item.notice})${details}`;
+    })
     .join("\n");
 }
 
@@ -203,6 +211,7 @@ function renderCart() {
         <div>
           <strong>${item.name}</strong>
           <span>${item.notice}</span>
+          ${item.details && item.details.length ? `<small>${item.details.join(", ")}</small>` : ""}
         </div>
         <div class="quantity-controls" aria-label="${item.name} quantity">
           <button type="button" data-decrease="${item.name}" aria-label="Decrease ${item.name}">-</button>
@@ -214,13 +223,14 @@ function renderCart() {
     .join("");
 }
 
-function addProduct(name) {
+function addProduct(name, options = {}) {
   const existing = cart.get(name);
   const meta = productMeta[name] || { notice: "Request pricing", category: "Treats" };
 
   cart.set(name, {
     name,
-    notice: meta.notice,
+    notice: options.notice || meta.notice,
+    details: options.details || existing?.details || [],
     quantity: existing ? existing.quantity + 1 : 1
   });
 
@@ -278,6 +288,43 @@ cartItems.addEventListener("click", (event) => {
 
 document.querySelectorAll("[data-add-product]").forEach((button) => {
   button.addEventListener("click", () => addProduct(button.dataset.addProduct));
+});
+
+document.querySelectorAll("[data-scroll-target]").forEach((button) => {
+  button.addEventListener("click", () => {
+    document.querySelector(button.dataset.scrollTarget).scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+function selectedTreatBoxItems() {
+  return Array.from(treatBoxBuilder.querySelectorAll('input[name="treats"]:checked'))
+    .map((input) => input.value);
+}
+
+function updateTreatBoxCount() {
+  const selected = selectedTreatBoxItems();
+  treatBoxCount.textContent = `${selected.length} selected`;
+  treatBoxStatus.textContent = selected.length >= 3
+    ? "Ready to add. You can still choose more favorites."
+    : "Choose at least 3 items.";
+}
+
+treatBoxBuilder.addEventListener("change", updateTreatBoxCount);
+
+treatBoxBuilder.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const selected = selectedTreatBoxItems();
+
+  if (selected.length < 3) {
+    treatBoxStatus.textContent = "Please choose at least 3 items to start your treat box.";
+    return;
+  }
+
+  addProduct("Build a Treat Box", {
+    notice: "Request pricing",
+    details: selected
+  });
+  treatBoxStatus.textContent = `Treat box added with ${selected.length} selections.`;
 });
 
 document.querySelectorAll("[data-quote]").forEach((button) => {
@@ -392,7 +439,7 @@ checkoutForm.addEventListener("submit", (event) => {
   }
 
   const subject = `MileStone Tiimes order: ${fullName} for ${neededBy}`;
-  const timingNote = noticeMessage("Standard Treat Box", neededBy);
+  const timingNote = noticeMessage("Build a Treat Box", neededBy);
   const emailBody = [
     "New MileStone Tiimes order details",
     "",
@@ -478,4 +525,5 @@ document.addEventListener("keydown", (event) => {
 });
 
 setMinimumDates();
+updateTreatBoxCount();
 renderCart();
