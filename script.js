@@ -25,18 +25,17 @@ const confirmationStatus = document.querySelector("[data-confirmation-status]");
 const ownerEmail = "juliavalcin@gmail.com";
 const facebookDmUrl = "https://m.me/100064224105993";
 const minNoticeDays = {
-  "Simple Birthday Cake": 1,
-  "Custom Cake": 2,
-  "Wedding Cake": 2,
-  "Treat Table": 2,
-  "Build a Treat Box": 1
+  "Custom Cakes": 1,
+  "Wedding Cakes": 1,
+  "Treat Tables": 1
 };
 
 const productMeta = {
-  "Custom Cupcakes": { notice: "Minimum 24 hours", category: "Treats" },
-  "Cake Pops": { notice: "Minimum 24 hours", category: "Treats" },
-  "Rum Balls": { notice: "48 hours", category: "Treats" },
-  "Build a Treat Box": { notice: "Minimum 24 hours", category: "Treats" }
+  "Simple Celebration Cake": { notice: "Simple cake request", category: "Cakes" },
+  "Custom Cupcakes": { notice: "By the dozen", category: "Treats" },
+  "Dipped Treats": { notice: "Custom finishes", category: "Treats" },
+  "Rum Balls": { notice: "Small batch", category: "Treats" },
+  "Build a Treat Box": { notice: "Choose at least 3 treats", category: "Treats" }
 };
 
 const cart = new Map();
@@ -56,7 +55,7 @@ function cartTotalCount() {
 }
 
 function formatCartItems() {
-  if (cart.size === 0) return "No quick treats selected.";
+  if (cart.size === 0) return "No standard treats selected.";
 
   return Array.from(cart.values())
     .map((item) => {
@@ -135,7 +134,6 @@ function formatDateInput(date) {
 
 function noticeLabel(days) {
   if (days === 1) return "24 hours";
-  if (days === 2) return "48 hours";
   return `${days} days`;
 }
 
@@ -153,7 +151,7 @@ function setMinimumDates() {
 
 function updateQuoteMinimumDate() {
   const type = eventType.value;
-  const requiredDays = minNoticeDays[type] || 2;
+  const requiredDays = minNoticeDays[type] || 1;
   const minimum = formatDateInput(addDays(todayAtMidnight(), requiredDays));
 
   quoteDateInput.min = minimum;
@@ -162,7 +160,7 @@ function updateQuoteMinimumDate() {
   }
 
   if (type) {
-    quoteStatus.textContent = `${type} usually needs ${noticeLabel(requiredDays)} of notice. Some custom orders may require additional preparation time.`;
+    quoteStatus.textContent = `${type} may require additional preparation time. Please contact us as early as possible to confirm availability.`;
   }
 }
 
@@ -171,9 +169,9 @@ function noticeMessage(type, dateValue) {
   const availableDays = daysUntil(dateValue);
   if (Number.isNaN(availableDays)) return "";
   if (availableDays < requiredDays) {
-    return `Heads up: ${type} usually needs ${noticeLabel(requiredDays)} of notice. Julia can review this as a rush request, but availability is not guaranteed.`;
+    return `Heads up: ${type} is inside the minimum ${noticeLabel(requiredDays)} notice window. Julia can review this as a rush request, but availability is not guaranteed.`;
   }
-  return `${type} timing looks workable based on the usual ${noticeLabel(requiredDays)} notice. Some custom orders may require additional preparation time.`;
+  return `A minimum of ${noticeLabel(requiredDays)} notice is required for selected orders. Custom Cakes, rum balls, Wedding Cakes, treat boxes, and Treat Tables may require additional preparation time.`;
 }
 
 function populateHandoff(panelSelector, emailSelector, dmSelector, summarySelector, copySelector, links, summary) {
@@ -207,7 +205,7 @@ function renderCart() {
   cartCount.textContent = count;
 
   if (count === 0) {
-    cartItems.innerHTML = '<p class="empty-cart">Add cupcakes, cake pops, rum balls, or a standard box to begin.</p>';
+    cartItems.innerHTML = '<p class="empty-cart">Add your selected cakes, cupcakes, individual treats, or custom treat box to begin your order.</p>';
     return;
   }
 
@@ -327,7 +325,7 @@ treatBoxBuilder.addEventListener("submit", (event) => {
   }
 
   addProduct("Build a Treat Box", {
-    notice: "Minimum 24 hours",
+    notice: "Choose at least 3 treats",
     details: selected
   });
   treatBoxStatus.textContent = `Treat box added with ${selected.length} selections.`;
@@ -439,13 +437,13 @@ checkoutForm.addEventListener("submit", (event) => {
   const count = cartTotalCount();
 
   if (count === 0) {
-    checkoutStatus.textContent = `${firstName}, add treats to the order list or use the custom quote form before confirming a deposit.`;
+    checkoutStatus.textContent = `${firstName}, add your selected cakes, cupcakes, individual treats, or custom treat box before sending the standard order form.`;
     openCart();
     return;
   }
 
   const subject = `MileStone Tiimes order: ${fullName} for ${neededBy}`;
-  const timingNote = noticeMessage("Build a Treat Box", neededBy);
+  const timingNote = noticeMessage("Standard treat order", neededBy);
   const emailBody = [
     "New MileStone Tiimes order details",
     "",

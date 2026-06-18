@@ -5,14 +5,14 @@ First static ecommerce presence for MileStone Tiimes, built for GitHub Pages.
 ## What is included
 
 - Responsive homepage for Ottawa custom cakes and dessert treats.
-- Product/order sections for cupcakes, cake pops, rum balls, standard boxes, simple cakes, wedding cakes, and treat tables.
+- Product/order sections for cupcakes, cake pops, rum balls, custom treat boxes, simple cakes, Wedding Cakes, and Treat Tables.
 - Cart-style order list for quick treats.
-- Quote request flow for custom cakes, wedding cakes, and treat tables.
+- Quote request flow for Custom Cakes, Wedding Cakes, and Treat Tables.
 - Build a Treat Box configurator with minimum 3-item selection and cart/order summary details.
-- Checkout details flow aligned to the current payment model: e-transfer deposit and remaining balance before pickup or delivery.
+- Standard order details flow plus a separate custom quote form for Custom Cakes, Wedding Cakes, and Treat Tables.
 - Email and Facebook DM handoff links that prepare order details for juliavalcin@gmail.com and the MileStone Tiimes Facebook inbox.
-- Occasion-led shopping paths for birthdays, weddings, event tables, and gift boxes.
-- Separate celebration path pages for birthday moments, wedding and shower tables, and giftable treats.
+- Occasion-led shopping paths for birthdays, weddings, events, and gifts.
+- Supporting pages for birthday moments, Treat Tables, and giftable treats.
 - Order handoff fallback panels with copyable details for email or Facebook Messenger.
 - Thank-you confirmation screen after email handoff with next steps, resend links, Facebook DM, and copyable details.
 - Separate client contact fields for first name, last name, email address, and phone number on both checkout and custom quote requests.
