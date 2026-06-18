@@ -477,6 +477,19 @@ button {
   gap: 18px;
 }
 
+.services-grid {
+  grid-template-columns: minmax(0, 680px);
+  justify-content: center;
+}
+
+.services-grid .product-card-wide {
+  grid-column: auto;
+}
+
+.service-feature-card img {
+  aspect-ratio: 4 / 3;
+}
+
 .occasion-section {
   padding-top: 58px;
 }
